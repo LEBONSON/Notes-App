@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%; /* Il permet de prendre toute la largeur de l'écran */
+    min-height: 100vh; /* Il permet de prendre toute la hauteur de l'écran */
+    background: linear-gradient(135deg, #cf9aff, #95c0ff); /* Pour les anciens navigateurs Opera */
+    color: #fff; /* Couleur du texte en blanc */
+    padding-top: 4%; /* Pour ajouter un espace en haut */
+    padding-left: 10%; /* Pour ajouter un espace à gauche */
+}
+
+.container h1{
+    display: flex; /* Pour aligner l'image et le texte horizontalement */
+    align-items: center; /* Pour centrer verticalement l'image et le texte */
+    font-size: 3rem; /* Taille de la police */
+    font-weight: 600; /* Épaisseur de la police */
+}
+
+.container h1 img {
+    width: 60px; /* Largeur de l'image */
+}
+
+.container button img {
+    width: 25px; /* Largeur de l'image */
+    margin-right: 8px; /* Espace entre l'image et le texte */
+}
+
+.container button{
+    display: flex; /* Pour aligner l'image et le texte horizontalement */
+    align-items: center; /* Pour centrer verticalement l'image et le texte */
+    background: linear-gradient(#9418fd, #571094); /* Dégradé de fond du bouton */
+    color: #fff; /* Couleur du texte en blanc */
+    font-size: 16px; /* Taille de la police */
+    outline: 0; /* Supprimer le contour par défaut */
+    border: 0; /* Supprimer la bordure par défaut */
+    border-radius: 40px; /* Bordure arrondie */
+    padding: 12px 24px; /* Espacement interne du bouton */
+    margin: 30px 0 20px; /* Marge autour du bouton */
+    cursor: pointer; /* Changer le curseur au survol */
+}
+
+.input-box{
+    position: relative; /* Pour positionner les éléments enfants par rapport à cet élément */
+    width: 100%; /* Prendre toute la largeur disponible */
+    max-width: 500px; /* Largeur maximale */
+    min-height: 150px; /* Hauteur minimale */
+    background: #fff; /* Fond blanc */
+    color: #333; /* Couleur du texte */
+    padding: 20px; /* Espacement interne */
+    margin: 10px 0; /* Marge autour de la boîte */
+    outline: none; /* Supprimer le contour par défaut */
+    border-radius: 5px; /* Bordure arrondie */
+} 
+
+.input-box img{
+    width: 25px; /* Largeur de l'image */
+    position: absolute; /* Positionnement absolu */
+    bottom: 15px; /* Positionner à 15px du bas */
+    right: 15px; /* Positionner à 15px de la droite */
+    cursor: pointer; /* Changer le curseur au survol */
+}
