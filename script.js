@@ -10,7 +10,7 @@ function showNotes() { // Fonction pour afficher les notes stockées dans le sto
     notesContainer.innerHTML = localStorage.getItem("notes"); // Récupère les notes depuis le stockage local et les affiche dans le conteneur des notes, getItem est une méthode qui permet de récupérer une valeur stockée dans le stockage local en utilisant une clé.
 }
 
-showNotes(); // Appelle la fonction pour afficher les notes lors du chargement de la page
+//showNotes(); // Appelle la fonction pour afficher les notes lors du chargement de la page
 
 
 /* Récupération des notes depuis le stockage local lors du chargement de la page */
@@ -19,10 +19,9 @@ function updateStorage() { // Fonction pour mettre à jour le stockage local ave
 }
 
 
-
 /* Ajout d'une nouvelle note lorsqu'on clique sur le bouton "Créer une note" */
 
-createBtn.addEventListener("click", function () {  // Ajoute un écouteur d'événement au bouton de création de note, addEventListener est une méthode qui permet d'attacher un gestionnaire d'événements à un élément. click est l'événement qui se déclenche lorsque l'utilisateur clique sur l'élément.
+createBtn.addEventListener("click", ()=> {  // Ajoute un écouteur d'événement au bouton de création de note pour gérer le clic, "click" est le type d'événement qui se produit lorsqu'un élément est cliqué.
     let inputBox = document.createElement("p"); // Crée un nouvel élément p pour la note, createElement est une méthode qui permet de créer un nouvel élément HTML.
     let img = document.createElement("img"); // Crée un nouvel élément img pour l'icône de suppression
     inputBox.className = "input-box"; // Définit la classe CSS de l'élément p créé, className est une propriété qui permet de définir ou de récupérer la valeur de l'attribut class d'un élément.
@@ -36,7 +35,8 @@ notesContainer.addEventListener("click", function(e) { // Ajoute un écouteur d'
     if (e.target.tagName === "IMG") { // Vérifie si l'élément cliqué est une image (icône de suppression), target est une propriété de l'objet événement qui fait référence à l'élément qui a déclenché l'événement. tagName est une propriété qui permet de récupérer le nom de la balise HTML d'un élément.
         e.target.parentElement.remove(); // Supprime la note parente de l'icône de suppression, parentElement est une propriété qui permet de récupérer l'élément parent d'un élément. remove est une méthode qui permet de supprimer un élément du DOM.
         updateStorage(); // Met à jour le stockage local après la suppression de la note
-    }else if( e.target.className === "p"){ // Vérifie si l'élément cliqué est une note
+    }
+    else if( e.target.tagName === "p"){ // Vérifie si l'élément cliqué est une note (élément p),target  est une propriété de l'objet événement qui fait référence à l'élément qui a déclenché l'événement. tagName est une propriété qui permet de récupérer le nom de la balise HTML d'un élément. targetName est une propriété qui permet de récupérer le nom de la balise HTML d'un élément.
         notes = document.querySelectorAll(".input-box"); // Met à jour la liste des notes
         notes.forEach(nt => { // Parcourt chaque note)
             nt.onkeyup = function() { // Ajoute un gestionnaire d'événement pour la touche relâchée (keyup) sur chaque note
@@ -44,4 +44,12 @@ notesContainer.addEventListener("click", function(e) { // Ajoute un écouteur d'
             }
         })
     }           
+})
+
+
+document.addEventListener("keydown", event => { // Ajoute un écouteur d'événement au document pour gérer les raccourcis clavier
+if (event.key === "Enter") { // Vérifie si la touche appuyée est "Enter"
+    document.execCommand("insertLineBreak"); // Insère un saut de ligne dans la note, execCommand est une méthode qui permet d'exécuter des commandes de formatage de texte dans un élément éditable.
+    event.preventDefault(); // Empêche le comportement par défaut de la touche "Enter", preventDefault est une méthode qui permet d'empêcher le comportement par défaut d'un événement.
+}
 })
