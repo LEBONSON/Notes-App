@@ -3,6 +3,23 @@ const createBtn = document.querySelector(".btn"); // Sélectionne le bouton de c
 let notes = document.querySelectorAll(".input-box"); // Sélectionne toutes les notes existantes, querySelectorAll est une méthode qui permet de sélectionner plusieurs éléments du DOM en utilisant un sélecteur CSS.
 
 
+
+
+/* Affichage des notes stockées dans le stockage local lors du chargement de la page */
+function showNotes() { // Fonction pour afficher les notes stockées dans le stockage local
+    notesContainer.innerHTML = localStorage.getItem("notes"); // Récupère les notes depuis le stockage local et les affiche dans le conteneur des notes, getItem est une méthode qui permet de récupérer une valeur stockée dans le stockage local en utilisant une clé.
+}
+
+showNotes(); // Appelle la fonction pour afficher les notes lors du chargement de la page
+
+
+/* Récupération des notes depuis le stockage local lors du chargement de la page */
+function updateStorage() { // Fonction pour mettre à jour le stockage local avec les notes actuelles
+    localStorage.setItem("notes", notesContainer.innerHTML); // stocke le contenu HTML du conteneur des notes dans le stockage local sous la clé "notes", localStorage est un objet qui permet de stocker des données localement dans le navigateur.
+}
+
+
+
 /* Ajout d'une nouvelle note lorsqu'on clique sur le bouton "Créer une note" */
 
 createBtn.addEventListener("click", function () {  // Ajoute un écouteur d'événement au bouton de création de note, addEventListener est une méthode qui permet d'attacher un gestionnaire d'événements à un élément. click est l'événement qui se déclenche lorsque l'utilisateur clique sur l'élément.
@@ -14,9 +31,17 @@ createBtn.addEventListener("click", function () {  // Ajoute un écouteur d'év�
     notesContainer.appendChild(inputBox).appendChild(img); // Ajoute l'élément p et l'icône de suppression au conteneur des notes, appendChild est une méthode qui permet d'ajouter un élément en tant que dernier enfant d'un autre élément. 
 })
 
-
+/* Suppression d'une note lorsqu'on clique sur l'icône de suppression */
 notesContainer.addEventListener("click", function(e) { // Ajoute un écouteur d'événement au conteneur des notes pour gérer la suppression des notes
     if (e.target.tagName === "IMG") { // Vérifie si l'élément cliqué est une image (icône de suppression), target est une propriété de l'objet événement qui fait référence à l'élément qui a déclenché l'événement. tagName est une propriété qui permet de récupérer le nom de la balise HTML d'un élément.
         e.target.parentElement.remove(); // Supprime la note parente de l'icône de suppression, parentElement est une propriété qui permet de récupérer l'élément parent d'un élément. remove est une méthode qui permet de supprimer un élément du DOM.
-    }
-});
+        updateStorage(); // Met à jour le stockage local après la suppression de la note
+    }else if( e.target.className === "p"){ // Vérifie si l'élément cliqué est une note
+        notes = document.querySelectorAll(".input-box"); // Met à jour la liste des notes
+        notes.forEach(nt => { // Parcourt chaque note)
+            nt.onkeyup = function() { // Ajoute un gestionnaire d'événement pour la touche relâchée (keyup) sur chaque note
+                updateStorage(); // Met à jour le stockage local lorsque le contenu de la note change
+            }
+        })
+    }           
+})
