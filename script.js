@@ -1,4 +1,4 @@
-const noteContainer = document.querySelector(".note-container"); // Sélectionne le conteneur des notes, querySelector est une méthode qui permet de sélectionner un élément du DOM en utilisant un sélecteur CSS.
+const notesContainer = document.querySelector(".notes-container"); // Sélectionne le conteneur des notes, querySelector est une méthode qui permet de sélectionner un élément du DOM en utilisant un sélecteur CSS.
 const createBtn = document.querySelector(".btn"); // Sélectionne le bouton de création de note
 let notes = document.querySelectorAll(".input-box"); // Sélectionne toutes les notes existantes, querySelectorAll est une méthode qui permet de sélectionner plusieurs éléments du DOM en utilisant un sélecteur CSS.
 
@@ -14,3 +14,9 @@ createBtn.addEventListener("click", function () {  // Ajoute un écouteur d'év�
     notesContainer.appendChild(inputBox).appendChild(img); // Ajoute l'élément p et l'icône de suppression au conteneur des notes, appendChild est une méthode qui permet d'ajouter un élément en tant que dernier enfant d'un autre élément. 
 })
 
+
+notesContainer.addEventListener("click", function(e) { // Ajoute un écouteur d'événement au conteneur des notes pour gérer la suppression des notes
+    if (e.target.tagName === "IMG") { // Vérifie si l'élément cliqué est une image (icône de suppression), target est une propriété de l'objet événement qui fait référence à l'élément qui a déclenché l'événement. tagName est une propriété qui permet de récupérer le nom de la balise HTML d'un élément.
+        e.target.parentElement.remove(); // Supprime la note parente de l'icône de suppression, parentElement est une propriété qui permet de récupérer l'élément parent d'un élément. remove est une méthode qui permet de supprimer un élément du DOM.
+    }
+});
