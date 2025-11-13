@@ -4,7 +4,6 @@ let notes = document.querySelectorAll(".input-box"); // Sélectionne toutes les 
 
 
 
-
 /* Affichage des notes stockées dans le stockage local lors du chargement de la page */
 function showNotes() { // Fonction pour afficher les notes stockées dans le stockage local
     notesContainer.innerHTML = localStorage.getItem("notes"); // Récupère les notes depuis le stockage local et les affiche dans le conteneur des notes, getItem est une méthode qui permet de récupérer une valeur stockée dans le stockage local en utilisant une clé.
@@ -17,6 +16,7 @@ function showNotes() { // Fonction pour afficher les notes stockées dans le sto
 function updateStorage() { // Fonction pour mettre à jour le stockage local avec les notes actuelles
     localStorage.setItem("notes", notesContainer.innerHTML); // stocke le contenu HTML du conteneur des notes dans le stockage local sous la clé "notes", localStorage est un objet qui permet de stocker des données localement dans le navigateur.
 }
+
 
 
 /* Ajout d'une nouvelle note lorsqu'on clique sur le bouton "Créer une note" */
