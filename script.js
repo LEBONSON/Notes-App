@@ -46,7 +46,7 @@ notesContainer.addEventListener("click", function(e) { // Ajoute un écouteur d'
     }           
 })
 
-
+bvn
 document.addEventListener("keydown", event => { // Ajoute un écouteur d'événement au document pour gérer les raccourcis clavier
 if (event.key === "Enter") { // Vérifie si la touche appuyée est "Enter"
     document.execCommand("insertLineBreak"); // Insère un saut de ligne dans la note, execCommand est une méthode qui permet d'exécuter des commandes de formatage de texte dans un élément éditable.
